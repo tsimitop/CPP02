@@ -4,8 +4,6 @@
 # include <iostream>
 # include <cmath>
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
-
 class Fixed
 {
 private:
@@ -24,5 +22,7 @@ public:
 	float	toFloat(void) const;
 	int		toInt(void) const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif
