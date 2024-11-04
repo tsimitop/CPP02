@@ -27,6 +27,9 @@ fclean : clean
 	@echo Deleting executable...
 	@rm -f $(NAME)
 
+superclean : fclean
+	@rm -f *.txt
+
 re: clean all
 
 .PHONY = all clean fclean re

@@ -30,7 +30,7 @@ Fixed::Fixed() : _fixedPointNbr(0)
 
 Fixed::~Fixed()
 {
-	std::cout << "Default destructor called." << std::endl;
+	std::cout << "Destructor called." << std::endl;
 }
 
 int	Fixed::getRawBits() const
