@@ -24,16 +24,17 @@ Fixed::Fixed (const Fixed& fixed)
 // 	*this = fixed;
 // }
 
-
 Fixed::Fixed(const int nbr) : _fixedPointNbr(0)
 {
-	this->_fixedPointNbr = nbr << this->_fractionalBitsNbr;
+	this->_fixedPointNbr = nbr << this->_fractionalBitsNbr; //more computationally efficient
+	// this->_fixedPointNbr = nbr * raisePower(2, _fractionalBitsNbr);
 	std::cout << "Int constructor called." << std::endl;
 }
 
 Fixed::Fixed(const float nbr) : _fixedPointNbr(0)
 {
-	this->_fixedPointNbr = static_cast<int> (roundf(nbr * raisePower(2, _fractionalBitsNbr)));
+	this->_fixedPointNbr = roundf(nbr * (1 << _fractionalBitsNbr)); //more computationally efficient
+	// this->_fixedPointNbr = static_cast<int> (roundf(nbr * raisePower(2, _fractionalBitsNbr)));
 	std::cout << "Float constructor called." << std::endl;
 }
 
@@ -61,7 +62,8 @@ float	Fixed::toFloat(void) const
 {
 	float	ret;
 
-	ret = this->_fixedPointNbr / raisePower(2, _fractionalBitsNbr);
+	// ret = this->_fixedPointNbr / raisePower(2, _fractionalBitsNbr);
+	ret = static_cast<float>(this->_fixedPointNbr) / static_cast<float>(1 << _fractionalBitsNbr);
 	return (ret);
 }
 
