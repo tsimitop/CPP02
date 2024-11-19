@@ -25,7 +25,7 @@ int main(void)
 
 	std::cout << "Initially a is: " << a << std::endl;
 
-	std::cout << "\nPRE-/POST INCREMENTATION/DECREMENTATION\n";
+	std::cout << "\nPRE-/POST INCREMENT/DECREMENT OPERATIONS\n";
 	//++a
 	std::cout << "Performing ++a: a [" << a << "] increases the first time [" << ++a;
 	std::cout << "] and keeps it same the second time [" << a << "]." << std::endl;
