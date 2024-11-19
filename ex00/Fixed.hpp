@@ -1,5 +1,5 @@
 #ifndef FIXED_H
- #define FIXED_H
+#define FIXED_H
 
 # include <iostream>
 # include <string>
@@ -10,10 +10,10 @@ private:
 	int	_fixedPointNbr;
 	static const int _fractionalBitsNbr = 8;	
 public:
-	Fixed();
-	Fixed (const Fixed& fixed);
-	~Fixed();
-	Fixed& operator=(const Fixed& fixed);
+	Fixed();								//Default constructor
+	Fixed(const Fixed& fixed);				//Copy constructor
+	~Fixed();								//Destructor
+	Fixed& operator=(const Fixed& fixed);	//Copy assignment operator
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);

@@ -7,7 +7,7 @@ Fixed::Fixed (const Fixed& fixed)
 	this->_fixedPointNbr = fixed._fixedPointNbr;
 }
 
-//Copy constructor
+//Copy constructor (calls assignment operator)
 // Fixed::Fixed (const Fixed& fixed)
 // {
 // 	std::cout << "Copy constructor called." << std::endl;
