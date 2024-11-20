@@ -10,7 +10,7 @@ float raisePower(int nbr, int exponent)
 }
 
 //Copy constructor
-Fixed::Fixed (const Fixed& fixed)
+Fixed::Fixed(const Fixed& fixed)
 {
 	// std::cout << "Copy constructor called.\n";
 	this->_fixedPointNbr = fixed._fixedPointNbr;
