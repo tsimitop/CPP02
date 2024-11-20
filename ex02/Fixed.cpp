@@ -12,43 +12,36 @@ float raisePower(int nbr, int exponent)
 //Copy constructor
 Fixed::Fixed (const Fixed& fixed)
 {
-	// std::cout << "Copy constructor called." << std::endl;
+	// std::cout << "Copy constructor called.\n";
 	this->_fixedPointNbr = fixed._fixedPointNbr;
 }
-
-//Copy constructor
-// Fixed::Fixed (const Fixed& fixed)
-// {
-// 	std::cout << "Copy constructor called." << std::endl;
-// 	*this = fixed;
-// }
 
 Fixed::Fixed(const int nbr) : _fixedPointNbr(0)
 {
 	this->_fixedPointNbr = nbr << this->_fractionalBitsNbr;
-	// std::cout << "Int constructor called." << std::endl;
+	// std::cout << "Int constructor called.\n";
 }
 
 Fixed::Fixed(const float nbr) : _fixedPointNbr(0)
 {
 	this->_fixedPointNbr = roundf(nbr * (1 << _fractionalBitsNbr));
-	// std::cout << "Float constructor called." << std::endl;
+	// std::cout << "Float constructor called.\n";
 }
 
 Fixed::Fixed() : _fixedPointNbr(0)
 {
-	// std::cout << "Default constructor called." << std::endl;
+	// std::cout << "Default constructor called.\n";
 }
 
 Fixed::~Fixed()
 {
-	// std::cout << "Destructor called." << std::endl;
+	// std::cout << "Destructor called.\n";
 }
 
 // Converts to int.
 int		Fixed::toInt(void) const
 {
-	int ret;
+	int	ret;
 
 	ret = this->_fixedPointNbr >> this->_fractionalBitsNbr;
 	return (ret);
@@ -65,64 +58,64 @@ float	Fixed::toFloat(void) const
 
 int	Fixed::getRawBits() const
 {
-	// std::cout << "getRawBits member function called." << std::endl;
+	// std::cout << "getRawBits member function called.\n";
 	return (this->_fixedPointNbr);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	// std::cout << "setRawBits member function called." << std::endl;
+	// std::cout << "setRawBits member function called.\n";
 	this->_fixedPointNbr = raw;
 }
 
 //Copy assignment operator
-Fixed& Fixed::operator=(const Fixed& fixed)
+Fixed&	Fixed::operator=(const Fixed& fixed)
 {
-	// std::cout << "Copy assignment operator called." << std::endl;
+	// std::cout << "Copy assignment operator called.\n";
 	if (this != &fixed)
 		this->_fixedPointNbr = fixed.getRawBits();
 	return (*this);
 }
 
 // << operator overload
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
+std::ostream&	operator<<(std::ostream& os, const Fixed& fixed)
 {
 	// os << std::fixed << std::setprecision(4) << fixed.toFloat();	// #include <iomanip>
 	os << fixed.toFloat();
 	return (os);
 }
 
-bool Fixed::operator<(const Fixed& fixed)
+bool	Fixed::operator<(const Fixed& fixed)
 {
 	return (_fixedPointNbr < fixed._fixedPointNbr);
 }
 
-bool Fixed::operator>(const Fixed& fixed)
+bool	Fixed::operator>(const Fixed& fixed)
 {
 	return (_fixedPointNbr > fixed._fixedPointNbr);
 }
 
-bool Fixed::operator<=(const Fixed& fixed)
+bool	Fixed::operator<=(const Fixed& fixed)
 {
 	return (_fixedPointNbr <= fixed._fixedPointNbr);
 }
 
-bool Fixed::operator>=(const Fixed& fixed)
+bool	Fixed::operator>=(const Fixed& fixed)
 {
 	return (_fixedPointNbr >= fixed._fixedPointNbr);
 }
 
-bool Fixed::operator==(const Fixed& fixed)
+bool	Fixed::operator==(const Fixed& fixed)
 {
 	return (_fixedPointNbr == fixed._fixedPointNbr);
 }
 
-bool Fixed::operator!=(const Fixed& fixed)
+bool	Fixed::operator!=(const Fixed& fixed)
 {
 	return (_fixedPointNbr != fixed._fixedPointNbr);
 }
 
-Fixed Fixed::operator+(const Fixed& fixed)
+Fixed	Fixed::operator+(const Fixed& fixed)
 {
 	Fixed ret;
 
@@ -130,7 +123,7 @@ Fixed Fixed::operator+(const Fixed& fixed)
 	return (ret);
 }
 
-Fixed Fixed::operator-(const Fixed& fixed)
+Fixed	Fixed::operator-(const Fixed& fixed)
 {
 	Fixed ret;
 
@@ -138,7 +131,7 @@ Fixed Fixed::operator-(const Fixed& fixed)
 	return (ret);
 }
 
-Fixed Fixed::operator*(const Fixed& fixed)
+Fixed	Fixed::operator*(const Fixed& fixed)
 {
 	Fixed ret;
 
@@ -146,11 +139,11 @@ Fixed Fixed::operator*(const Fixed& fixed)
 	return (ret);
 }
 
-Fixed Fixed::operator/(const Fixed& fixed)
+Fixed	Fixed::operator/(const Fixed& fixed)
 {
 	Fixed ret;
 
-	ret.setRawBits((((this->_fixedPointNbr) << this->_fractionalBitsNbr) / fixed._fixedPointNbr));
+	ret.setRawBits(((this->_fixedPointNbr) << this->_fractionalBitsNbr) / fixed._fixedPointNbr);
 	return (ret);
 }
 
@@ -161,7 +154,7 @@ Fixed& Fixed::operator++(void) //prefix
 	return (*this);
 }
 
-Fixed Fixed::operator++(int) //postfix
+Fixed	Fixed::operator++(int) //postfix
 {
 	Fixed ret(*this); // Create a copy with the original value
 
@@ -176,7 +169,7 @@ Fixed& Fixed::operator--(void) //prefix
 }
 
 
-Fixed Fixed::operator--(int) //postfix
+Fixed	Fixed::operator--(int) //postfix
 {
 	Fixed ret(*this); // Create a copy with the original value
 
@@ -192,7 +185,7 @@ const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
 		return (b);
 }
 
-Fixed& Fixed::min(Fixed& a, Fixed& b)
+Fixed&	Fixed::min(Fixed& a, Fixed& b)
 {
 	if (a._fixedPointNbr < b._fixedPointNbr)
 		return (a);
@@ -200,7 +193,7 @@ Fixed& Fixed::min(Fixed& a, Fixed& b)
 		return (b);
 }
 
-const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 {
 	if (a._fixedPointNbr > b._fixedPointNbr)
 		return (a);
@@ -208,7 +201,7 @@ const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
 		return (b);
 }
 
-Fixed& Fixed::max(Fixed& a, Fixed& b)
+Fixed&	Fixed::max(Fixed& a, Fixed& b)
 {
 	if (a._fixedPointNbr > b._fixedPointNbr)
 		return (a);
