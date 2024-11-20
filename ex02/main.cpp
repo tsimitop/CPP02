@@ -45,16 +45,16 @@ int main(void)
 	std::cout << std::boolalpha; //ENABLE BOOLEAN PRINTING
 	std::cout << "\nBOOLEAN TESTS\n";
 	//true
-	std::cout << "This should be true: " << (a < b) << std::endl;
-	std::cout << "This should be true: " << (a <= b) << std::endl;
-	std::cout << "This should be true: " << (a != b) << std::endl;
-	std::cout << "This should be true: " << (a == c) << std::endl;
+	std::cout << "(" << a << " < " << b << ") should be true: " << (a < b) << std::endl;
+	std::cout << "(" << a << " <= " << b << ") should be true: " << (a <= b) << std::endl;
+	std::cout << "(" << a << " != " << b << ") should be true: " << (a != b) << std::endl;
+	std::cout << "(" << a << " == " << c << ") should be true: " << (a == c) << std::endl;
 
 	//false
-	std::cout << "This should be false: " << (a > b) << std::endl;
-	std::cout << "This should be false: " << (a >= b) << std::endl;
-	std::cout << "This should be false: " << (a != c) << std::endl;
-	std::cout << "This should be false: " << (a == b) << std::endl;
+	std::cout << "(" << a << " > " << b << ") should be false: " << (a > b) << std::endl;
+	std::cout << "(" << a << " >= " << b << ") should be false: " << (a >= b) << std::endl;
+	std::cout << "(" << a << " != " << c << ") should be false: " << (a != c) << std::endl;
+	std::cout << "(" << a << " == " << b << ") should be false: " << (a == b) << std::endl;
 	std::cout << std::noboolalpha; // DISABLE BOOLEAN PRINTING
 	
 	//calculations
@@ -64,7 +64,28 @@ int main(void)
 	std::cout << a << " * " << b << " = " << a * b << std::endl;
 	std::cout << a << " / " << b << " = " << a / b << std::endl;
 
-	// std::cout << b << std::endl;
-	// std::cout << Fixed::max(a, b) << std::endl;
+	std::cout << "\nMINIMUM AND MAXIMUM\n";
+	std::cout << "Maximum of (" << a << "," << b << ") = " << Fixed::max(a, b) << std::endl;
+	std::cout << "Minimum of (" << a << "," << b << ") = " << Fixed::min(a, b) << std::endl;
+
+	Fixed		noConstMax(Fixed::max(a, b));	// calls static const Fixed max(const Fixed& a, const Fixed& b);
+	const Fixed	constMax(Fixed::max(d, b));		// calls static const Fixed max(const Fixed& a, const Fixed& b);
+
+	std::cout << "\nnoConstMax is = " << noConstMax << std::endl;
+	noConstMax = a;	//CAN COMPILE
+	std::cout << "after assignment noConstMax is = " << noConstMax << std::endl;
+	std::cout << "constMax is = " << constMax << " and can not change\n";
+	// constMax = a;	//CAN'T COMPILE
+
+	Fixed		noConstMin(Fixed::min(a, c));	// calls static Fixed& min(Fixed& a, Fixed& b)
+	const Fixed	constMin(Fixed::min(a, c));		// calls static Fixed& min(Fixed& a, Fixed& b)
+
+	std::cout << "\nnoConstMin is = " << noConstMin << std::endl;
+	noConstMin = b;	//CAN COMPILE
+	std::cout << "after assignment noConstMin is = " << noConstMin << std::endl;
+	std::cout << "constMin is = " << constMin << " and can not change\n";
+	// constMin = a;	//CAN'T COMPILE
+
+
 	return 0;
 }
