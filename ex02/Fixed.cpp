@@ -52,7 +52,7 @@ float	Fixed::toFloat(void) const
 {
 	float	ret;
 
-	ret = static_cast<float>(_fixedPointNbr) / (1 << _fractionalBitsNbr);
+	ret = static_cast<float>(_fixedPointNbr) / static_cast<float>(1 << _fractionalBitsNbr);
 	return (ret);
 }
 
