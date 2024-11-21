@@ -18,13 +18,13 @@ Fixed::Fixed(const Fixed& fixed)
 
 Fixed::Fixed(const int nbr) : _fixedPointNbr(0)
 {
-	this->_fixedPointNbr = nbr << this->_fractionalBitsNbr;
+	_fixedPointNbr = nbr << _fractionalBitsNbr;
 	// std::cout << "Int constructor called.\n";
 }
 
 Fixed::Fixed(const float nbr) : _fixedPointNbr(0)
 {
-	this->_fixedPointNbr = roundf(nbr * (1 << _fractionalBitsNbr));
+	_fixedPointNbr = roundf(nbr * (1 << _fractionalBitsNbr));
 	// std::cout << "Float constructor called.\n";
 }
 
@@ -43,7 +43,7 @@ int		Fixed::toInt(void) const
 {
 	int	ret;
 
-	ret = this->_fixedPointNbr >> this->_fractionalBitsNbr;
+	ret = _fixedPointNbr >> _fractionalBitsNbr;
 	return (ret);
 }
 
@@ -52,7 +52,7 @@ float	Fixed::toFloat(void) const
 {
 	float	ret;
 
-	ret = static_cast<float>(this->_fixedPointNbr) / static_cast<float>(1 << _fractionalBitsNbr);
+	ret = static_cast<float>(_fixedPointNbr) / (1 << _fractionalBitsNbr);
 	return (ret);
 }
 
@@ -149,8 +149,8 @@ Fixed	Fixed::operator/(const Fixed& fixed)
 
 Fixed& Fixed::operator++(void) //prefix
 {
-	this->_fixedPointNbr += (1 << this->_fractionalBitsNbr);
-
+	// this->_fixedPointNbr += (1 << this->_fractionalBitsNbr); //increase by one decimal unit
+	_fixedPointNbr++;
 	return (*this);
 }
 
@@ -158,22 +158,24 @@ Fixed	Fixed::operator++(int) //postfix
 {
 	Fixed ret(*this); // Create a copy with the original value
 
-	this->_fixedPointNbr += (1 << this->_fractionalBitsNbr);
+	// this->_fixedPointNbr += (1 << this->_fractionalBitsNbr); //increase by one decimal unit
+	_fixedPointNbr++;
 	return (ret);
 }
 
 Fixed& Fixed::operator--(void) //prefix
 {
-	this->_fixedPointNbr -= (1 << this->_fractionalBitsNbr);
+	// this->_fixedPointNbr -= (1 << this->_fractionalBitsNbr); //decrease by one decimal unit
+	_fixedPointNbr--;
 	return (*this);
 }
-
 
 Fixed	Fixed::operator--(int) //postfix
 {
 	Fixed ret(*this); // Create a copy with the original value
 
-	this->_fixedPointNbr -= (1 << this->_fractionalBitsNbr);
+	// this->_fixedPointNbr -= (1 << this->_fractionalBitsNbr); //decrease by one decimal unit
+	_fixedPointNbr--;
 	return (ret);
 }
 
@@ -208,4 +210,3 @@ Fixed&	Fixed::max(Fixed& a, Fixed& b)
 	else
 		return (b);
 }
-
