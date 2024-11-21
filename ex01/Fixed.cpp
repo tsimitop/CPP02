@@ -63,7 +63,7 @@ float	Fixed::toFloat(void) const
 	float	ret;
 
 	// ret = this->_fixedPointNbr / raisePower(2, _fractionalBitsNbr);
-	ret = static_cast<float>(this->_fixedPointNbr) / static_cast<float>(1 << _fractionalBitsNbr);
+	ret = static_cast<float>(_fixedPointNbr) / static_cast<float>(1 << _fractionalBitsNbr);
 	return (ret);
 }
 
